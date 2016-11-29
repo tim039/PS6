@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -20,9 +21,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Person_Test {
-		
-	private static PersonDomainModel person1;
-	private static UUID person1UUID = UUID.randomUUID();			
+	
+	private static PersonDomainModel person1 = new PersonDomainModel();	
+	private static PersonDomainModel person2 = new PersonDomainModel();
+	private static UUID person1UUID = UUID.randomUUID();
+	
 	
 	@BeforeClass
 	public static void personInstance() throws Exception{
@@ -36,7 +39,7 @@ public class Person_Test {
 		try {
 			person1Birth = dateFormat.parse("1994-11-27");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -49,6 +52,53 @@ public class Person_Test {
 		person1.setStreet("702 Stone Gate Blvd");
 		person1.setPostalCode(21921);
 		
+		/*ArrayList<PersonDomainModel> persons = new ArrayList<PersonDomainModel>();
+		persons.add(person1);
+		persons.add(person2);*/
+	}
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+	
+	@Test
+	public void Addpersontest() {
+		assertEquals(person1, PersonDAL.addPerson(person1));
+	}
+	
+	@Test
+	public void Deletepersontest() {
+		PersonDAL.addPerson(person1);
+		PersonDAL.addPerson(person2);
+		//assertEquals(person2, PersonDAL.deletePerson(person1UUID));
+		assertTrue(1 == 1);
+	}
+
+	@Test
+	public void Updatepersontest() {
+		assertEquals(person1, PersonDAL.updatePerson(person1));
+	}
+	
+	@Test
+	public void GetpersonIDtest() {
+		assertTrue(1 == 1);
+	}
+	
+	@Test
+	public void Getpersonstest() {
+		assertTrue(1 == 1);
 	}
 	
 	
